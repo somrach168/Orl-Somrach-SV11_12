@@ -117,6 +117,15 @@ clearCart() {
   getCartItem() {
     return this.cart_item;
   }
+    hasSelectedItems(): boolean {
+  return this.cart_item.some(item => item.is_select);
+}
+
+clearSelectedItems() {
+  this.cart_item = this.cart_item.filter(item => !item.is_select);
+  localStorage.setItem('cart_item', JSON.stringify(this.cart_item));
+}
+
 
 
 }

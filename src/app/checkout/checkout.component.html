@@ -8,7 +8,7 @@
       <h2 class="section-title">Order Summary</h2>
 
       <div class="cart-items">
-        @for(item of CartServiceService.getCartItem(); track item.id ){
+        @for(item of selectedItems; track item.id ){
         <div class="cart-item">
           <div class="item-image">
             <img [src]="item.image" alt="Wireless Headphones" />

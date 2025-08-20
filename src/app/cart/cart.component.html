@@ -73,7 +73,10 @@
           (click)="CartServiceService.removeallCartItem(cart_item)">
           🧹 Clear Cart
         </button>
-        <a routerLink="/checkout" class="btn btn-success">
+        <a routerLink="/checkout" class="btn btn-success"
+         [class.disabled]="!CartServiceService.hasSelectedItems()"
+         [attr.aria-disabled]="!CartServiceService.hasSelectedItems()">
+
           💳 Proceed to Checkout
         </a>
       </div>

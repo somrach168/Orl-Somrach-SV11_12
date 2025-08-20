@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { CartServiceService } from '../service/cart-service.service';
 import { CurrencyPipe } from '@angular/common';
+import { Router } from '@angular/router';
+// declare const Swal: any;
 
 @Component({
   selector: 'app-checkout',
@@ -12,21 +14,20 @@ import { CurrencyPipe } from '@angular/common';
 export class CheckoutComponent {
   cart_item: any[] = [];
 
-  constructor(public CartServiceService: CartServiceService) {
-    this.cart_item = this.CartServiceService.getCartItem();
+   selectedItems: any = [];
+
+  constructor(
+     public CartServiceService: CartServiceService,
+    private router: Router
+  ) {
+    this.selectedItems = this.CartServiceService.getCartItem()
+      .filter(x => x.is_select);
   }
 
-  completePurchase() {
-    if (this.cart_item.length === 0) {
-      alert("Your cart is empty!");
-      return;
-    }
+completePurchase() {
+  alert('ការទិញបានបញ្ចប់ដោយជោគជ័យ🎉🎉');
+  this.CartServiceService.clearSelectedItems();
+}
 
-    // Simulate purchase success
-    alert("✅ Purchase completed successfully!");
 
-    // Clear cart after purchase (handled in service)
-    this.CartServiceService.clearCart();
-    this.cart_item = [];
-  }
 }

@@ -1,9 +1,7 @@
-/* footer.css */
-.ecommerce-footer {
+/* .ecommerce-footer {
   background-color: #2d3748;
   color: #fff;
   padding: 3rem 0 0;
-  /* border-radius:20px ; */
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin-top: 20px;
 }
@@ -128,7 +126,7 @@
   text-align: center;
   font-size: 0.9rem;
   color: #a0aec0;
-  /* border-radius:0px 0px 20px 20px; */
+
 }
 
 .legal-links {
@@ -146,7 +144,7 @@
   color: #f6ad55;
 }
 
-/* Responsive adjustments */
+
 @media (max-width: 768px) {
   .footer-container {
     grid-template-columns: 1fr 1fr;
@@ -171,4 +169,4 @@
   .footer-container {
     grid-template-columns: 1fr;
   }
-}
+} */

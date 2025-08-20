@@ -1,57 +1,52 @@
-<div class="menu">
-    <nav class="navbar">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
 
-   <div class="navbar-container">
     <!-- Logo -->
-
-    <a routerLink="/" class="logo">SR.<span>SHOP</span></a>
+    <a routerLink="/" class="navbar-brand">SR.<span class="text-warning">SHOP</span></a>
 
     <!-- Mobile Menu Button -->
-    <button class="mobile-menu-btn">
-      <i class="fas fa-bars"></i>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
 
     <!-- Navigation Links -->
-    <ul class="nav-links">
-      <li><a routerLink="/">Home</a></li>
-      <!-- <li>
-        <a href="#">Shop <i class="fas fa-chevron-down"></i></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Men's CloThing</a></li>
-          <li><a href="#">Women's CloThing</a></li>
-          <li><a href="#">Electronics</a></li>
-          <li><a href="#">Home & Garden</a></li>
-        </ul>
-      </li>
-      <li><a href="#">New Arrivals</a></li>
-      <li><a href="#">Deals</a></li> -->
-      <li><a   routerLink="/productlist">Products</a></li>
-      <li><a   routerLink="/contact">Contect</a></li>
-       <li><a routerLink="/about">About</a></li>
-    </ul>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/productlist">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/contact">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/about">About</a>
+        </li>
+      </ul>
 
-    <!-- Icons -->
-    <div class="nav-icons">
-      <div class="search-container">
-        <input type="text" placeholder="Search products..." />
-        <button type="submit"><i class="fas fa-search"></i></button>
+      <!-- Search Bar -->
+      <form class="d-flex me-3" role="search">
+        <input class="form-control me-2" type="search" placeholder="Search products..." aria-label="Search">
+        <button class="btn btn-outline-light" type="submit">
+          <i class="fas fa-search"></i>
+        </button>
+      </form>
+
+      <!-- Icons -->
+      <div class="d-flex align-items-center">
+        <a href="#" class="text-white me-3"><i class="far fa-user"></i></a>
+        <a href="#" class="text-white me-3"><i class="far fa-heart"></i></a>
+        <a routerLink="/cart" class="btn btn-warning">
+          🛒 ({{ CartServiceService.getCartItem().length }})
+        </a>
       </div>
-      <a href="#"><i class="far fa-user"></i></a>
-      <a href="#"><i class="far fa-heart"></i></a>
-      <a href="#" class="cart-icon">
-        <i class="fas fa-shopping-cart"></i>
-        <a
-        routerLink="/cart"
-        class="cart-count" type="button" style="color: aliceblue;   text-decoration: none; ">🛒({{CartServiceService.getCartItem().length}})
-
-
-      </a>
-      </a>
     </div>
   </div>
 </nav>
 
-</div>
         <router-outlet/>
 
 <div class="footer">

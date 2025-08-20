@@ -1,105 +1,82 @@
-<div class="cart-container">
-  <h1 class="cart-title">
+<div class="container my-5">
+  <h1 class="mb-4">
     🛒 Your Shopping Cart
-    <span class="cart-count"></span>
+    <span class="badge bg-primary">{{ CartServiceService.getCartItem().length }}</span>
   </h1>
 
-  <!-- cart_item -->
-  <div>
-    @if(CartServiceService.getCartItem().length == 0){
-    <div class="empty-cart">
-      <p class="empty-message">Your cart is empty 😎</p>
-      <a routerLink="/" class="continue-shopping"> 🔙Continue Shopping </a>
+  <!-- Empty Cart -->
+  @if(CartServiceService.getCartItem().length == 0) {
+    <div class="alert alert-warning text-center">
+      Your cart is empty 😎
     </div>
-    } @for(item of CartServiceService.getCartItem(); track item.id ){
+    <div class="text-center">
+      <a routerLink="/" class="btn btn-outline-primary">
+        🔙 Continue Shopping
+      </a>
+    </div>
+  }
 
-    <div class="cart-items-list">
-      <div class="cart-item">
-        <!-- Product Info -->
-        <input
-          type="checkbox"
-          style="width: 40px; height: 30px; margin-right: 10px"
-          [checked]="item.is_select"
-          (change)="CartServiceService.SelectCartItem(item)"
-        />
-        <div class="product-info">
-          <img [src]="item.image" [alt]="item.title" class="product-image" />
-          <div class="product-details">
-            <h2 class="product-title">{{ item.title }}</h2>
-            <p
-              style="
-                color: rgb(118, 117, 117);
-                margin-top: -2px;
-                margin-bottom: -1px;
-              "
-            >
-              {{ item.category }}
-            </p>
-            <p class="product-price">
-              Price: <span>{{ item.price | currency }}</span>
-            </p>
-            <p class="product-total">
-              Total:<b
-                style="
-                  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
-                    sans-serif;
-                "
-                >{{ item.price * item.qty | currency }}</b
-              >
-            </p>
-          </div>
+  <!-- Cart Items -->
+  @for(item of CartServiceService.getCartItem(); track item.id) {
+    <div class="card mb-3 shadow-sm">
+      <div class="row g-0 align-items-center p-2">
+
+        <!-- Checkbox -->
+        <div class="col-auto m-3"  >
+          <input type="checkbox" class="form-check-input"
+            [checked]="item.is_select"
+            (change)="CartServiceService.SelectCartItem(item)"
+            style="width: 30px;height: 30px; ">
+        </div>
+
+        <!-- Product Image -->
+        <div class="col-md-2 text-center">
+          <img [src]="item.image" [alt]="item.title" class="img-fluid rounded" style="max-height: 100px;">
+        </div>
+
+        <!-- Product Details -->
+        <div class="col-md-4">
+          <h5 class="mb-1">{{ item.title }}</h5>
+          <small class="text-muted">{{ item.category }}</small>
+          <p class="mb-1">Price: <strong>{{ item.price | currency }}</strong></p>
+          <p class="mb-0">Total: <strong>{{ item.price * item.qty | currency }}</strong></p>
         </div>
 
         <!-- Quantity Controls -->
-        <div class="quantity-controls">
-          <button
-            class="quantity-btn"
-            (click)="CartServiceService.decremenQty(item)"
-          >
-            -
-          </button>
-          <span class="quantity-value">{{ item.qty }}</span>
-          <button
-            class="quantity-btn"
-            (click)="CartServiceService.incremenQty(item)"
-          >
-            +
-          </button>
+        <div class="col-md-3 d-flex align-items-center">
+          <button class="btn btn-outline-secondary btn-sm me-2"
+            (click)="CartServiceService.decremenQty(item)">-</button>
+          <span class="fw-bold">{{ item.qty }}</span>
+          <button class="btn btn-outline-secondary btn-sm ms-2"
+            (click)="CartServiceService.incremenQty(item)">+</button>
         </div>
 
-        <!-- Delete Button -->
-        <button
-          class="delete-btn"
-          (click)="CartServiceService.removeCartItem(item)"
-        >
-          🗑 Remove
-        </button>
+        <!-- Remove Button -->
+        <div class="col-md-2 text-end">
+          <button class="btn btn-outline-danger btn-sm"
+            (click)="CartServiceService.removeCartItem(item)">
+            🗑 Remove
+          </button>
+        </div>
       </div>
     </div>
-    } @if(CartServiceService.getCartItem().length > 0){
+  }
 
-    <div class="cart-footer">
-      <h2 class="cart-total">
-        Total:{{ CartServiceService.getCartTotal() | currency }}$
-      </h2>
-      <div class="action-buttons">
-        <button
-          class="clear-btn"
-          (click)="CartServiceService.removeallCartItem(cart_item)"
-          style="font-family: unset"
-        >
+  <!-- Cart Footer -->
+  @if(CartServiceService.getCartItem().length > 0) {
+    <div class="card p-3 mt-4 shadow-sm">
+      <h4 class="mb-3">
+        Total: <span class="text-success">{{ CartServiceService.getCartTotal() | currency }}</span>
+      </h4>
+      <div class="d-flex justify-content-between">
+        <button class="btn btn-outline-danger"
+          (click)="CartServiceService.removeallCartItem(cart_item)">
           🧹 Clear Cart
         </button>
-        <button
-          routerLink="/checkout"
-          class="checkout-btn"
-          style="font-family: unset"
-          routerLink="/checkout"
-        >
+        <a routerLink="/checkout" class="btn btn-success">
           💳 Proceed to Checkout
-        </button>
+        </a>
       </div>
     </div>
-    }
-  </div>
+  }
 </div>

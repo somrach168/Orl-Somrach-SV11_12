@@ -1,76 +1,67 @@
-<div class="product-detail">
-  <div class="product-gallery">
-    <div class="main-image">
-      <img
-        src="{{ product.image }}"
-        alt="Premium Wireless Headphones"
-        id="main-img"
-      />
-    </div>
-    <!-- <div class="thumbnail-container">
-      <div class="thumbnail active" data-image="">
-        <img src="{{ product.image }}" alt="Headphones thumbnail" />
-      </div>
-      <div class="thumbnail" data-image="">
-        <img src="{{ product.image }}" lt="Headphones thumbnail" />
-      </div>
-      <div class="thumbnail" data-image="">
-        <img src="{{ product.image }}" alt="Headphones thumbnail" />
-      </div>
-      <div class="thumbnail" data-image="">
-        <img src="{{ product.image }}" alt="Headphones thumbnail" />
-      </div>
-    </div> -->
-  </div>
+<div class="container my-5">
+  <div class="row g-4 align-items-start">
 
-  <div class="product-info">
-    <h1 class="product-title">{{ product.title }}</h1>
-
-    <div class="product-rating">
-      <div class="stars">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star-half-alt"></i>
-      </div>
-      <div class="rating-count">(128 reviews)</div>
+    <!-- Product Image -->
+    <div class="col-lg-6 text-center">
+      <img [src]="product.image" [alt]="product.title"
+           class="img-fluid rounded shadow-sm"
+           style="max-height: 500px; object-fit: contain;">
     </div>
 
-    <div class="product-price">
-      <div class="current-price">{{ product.price | currency }}</div>
-      <div class="original-price">{{ product.price | toKHR }}</div>
-      <div class="discount">{{ product.category }}</div>
-    </div>
+    <!-- Product Info -->
+    <div class="col-lg-6">
+      <h1 class="mb-3">{{ product.title }}</h1>
 
-    <p class="product-description">
-      {{ product.description }}
-    </p>
+      <!-- Rating -->
+      <div class="d-flex align-items-center mb-3">
+        <div class="text-warning me-2">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star-half-alt"></i>
+        </div>
+        <span class="text-muted">(128 reviews)</span>
+      </div>
 
-    <div class="product-features">
-      <ul class="feature-list">
-        <li><i class="fas fa-check"></i> Active Noise Cancellation</li>
-        <li><i class="fas fa-check"></i> 30-hour battery life</li>
-        <li><i class="fas fa-check"></i> Hi-Fi sound quality</li>
-        <li><i class="fas fa-check"></i> Voice assistant support</li>
-        <li><i class="fas fa-check"></i> Comfort-fit design</li>
+      <!-- Price -->
+      <div class="mb-3">
+        <h3 class="text-success fw-bold">{{ product.price | currency }}</h3>
+        <div class="text-muted">{{ product.price | toKHR }}</div>
+        <span class="badge bg-info text-dark">{{ product.category }}</span>
+      </div>
+
+      <!-- Description -->
+      <p class="mb-4">{{ product.description }}</p>
+
+      <!-- Features -->
+      <ul class="list-unstyled mb-4">
+        <li><i class="fas fa-check text-success me-2"></i> Active Noise Cancellation</li>
+        <li><i class="fas fa-check text-success me-2"></i> 30-hour battery life</li>
+        <li><i class="fas fa-check text-success me-2"></i> Hi-Fi sound quality</li>
+        <li><i class="fas fa-check text-success me-2"></i> Voice assistant support</li>
+        <li><i class="fas fa-check text-success me-2"></i> Comfort-fit design</li>
       </ul>
-    </div>
 
-    <div class="product-actions">
-      <div class="quantity-selector">
-        <button class="quantity-btn" (click)="decreaseQty()">-</button>
-        <span class="quantity-input" style="padding-top: 8px;">{{ qty }}</span>
-        <button class="quantity-btn" (click)="increaseQty()">+</button>
+      <!-- Actions -->
+      <div class="d-flex align-items-center mb-3">
+        <!-- Quantity Selector -->
+        <div class="input-group me-3" style="width: 120px;">
+          <button class="btn btn-outline-secondary" (click)="decreaseQty()">-</button>
+          <input type="text" class="form-control text-center" [value]="qty" readonly>
+          <button class="btn btn-outline-secondary" (click)="increaseQty()">+</button>
+        </div>
+
+        <!-- Add to Cart -->
+        <button class="btn btn-primary me-2" (click)="addToCart(product)">
+          <i class="fas fa-shopping-cart me-1"></i> Add to Cart
+        </button>
+
+        <!-- Wishlist -->
+        <button class="btn btn-outline-danger">
+          <i class="fas fa-heart"></i>
+        </button>
       </div>
-
-      <button class="add-to-cart" (click)="addToCart(product)">
-        <i class="fas fa-shopping-cart abs"></i> Add to Cart
-      </button>
-
-      <button>
-        <p style="color: black; font-size: 25px">⁠♥️</p>
-      </button>
     </div>
   </div>
 </div>

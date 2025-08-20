@@ -1,0 +1,8 @@
+<div class="products-container">
+  @for (item of ProductService.getProduct(); track item.id) {
+    <app-product
+      [product]="item"
+      (onAddToCart)="addToCart($event)">
+    </app-product>
+  }
+</div>

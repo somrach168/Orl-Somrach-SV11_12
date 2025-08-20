@@ -1,0 +1,20 @@
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 per row */
+  gap: 1rem;
+  justify-items: center;
+  padding: 40px;
+}
+
+/* Responsive design */
+@media (max-width: 1024px) {
+  .products-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 per row on tablet */
+  }
+}
+
+@media (max-width: 640px) {
+  .products-container {
+    grid-template-columns: 1fr; /* 1 per row on mobile */
+  }
+}
